@@ -84,9 +84,22 @@
 			$this->db->update('usertable', $data); 
 		}
 		
+		function insertUser($ic,$password,$name,$address)//staff access
+		{			
+			$data = array(
+			   'ic' => $ic ,
+			   'password' => $password ,
+			   'name' => $name ,
+			   'address' => $address
+			);			
+			$this->db->insert('usertable', $data); 
+			return true;
+		}
+		
 		//>>>>>>>>Borrow Function>>>>>>>>>>
 		function getAllLoan()
 		{
+			$this->db->order_by("loanDate", "asc");
 			$q = $this->db->get("borrowtable");
 			if($q->num_rows() > 0)
 			{
@@ -97,6 +110,25 @@
 				return $data;
 			}
 		}
+		function getLoan($ic = null , $bookID = null)
+		{
+			$this->db->order_by("loanDate", "asc");//desc
+			$q = $this->db->get("borrowtable");
+			if($q->num_rows() > 0)
+			{
+				foreach($q->result() as $row)
+				{
+					if($row->ic == $ic && $row->bookID == $bookID)
+					{					
+						return $row;					
+					}
+				}
+				echo "Not Found";
+				return null;
+			}
+			else
+				echo "Database Empty";
+		}
 		function insertLoan($userID , $bookID)
 		{
 			$data = array(
@@ -105,6 +137,14 @@
 			);//date default to current date			
 			$this->db->insert('borrowtable', $data); 
 			echo "<br />update borrowtable done";
+		}
+		function deleteLoan($data)
+		{	
+			$this->db->limit(1);
+			//print_r($data);
+			$this->db->where($data);
+			$this->db->delete('borrowtable');			
+			echo "<br />Delete borrowtable done";
 		}
 		
 		//>>>>>>>>Book Function>>>>>>>>>>
@@ -135,9 +175,9 @@
 				echo "book not found";
 			}
 		}
-		function setBookAvailable($data)
+		function setBookAvailable($data , $num)
 		{
-			$data->available = $data->available - 1;			
+			$data->available = $data->available + $num;			
 			$this->db->where('bookID', $data->bookID);
 			$this->db->update('booktable', $data);			
 		}
@@ -190,15 +230,6 @@
 			}else
 				echo "Database Empty";
 		}			
-		function addUser($ic , $password , $name , $address )//staff access
-		{
-			$data = array(
-			   'ic' => $ic ,
-			   'password' => $password ,
-			   'name' => $name ,
-			   'numLoan' => '0'
-			);			
-			$this->db->insert('usertable', $data); 
-		}
+		
 	}
 ?>
