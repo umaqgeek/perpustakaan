@@ -26,10 +26,10 @@
         <div align="left"><a href="<?php echo base_url()?>directLoanPage">Approve Loan</a></div>
       </li>
       <li>
-        <div align="left"><a href="<?php echo base_url()?>">Register</a></div>
+        <div align="left"><a href="<?php echo base_url()?>directRegisterPage">Register</a></div>
       </li>
       <li>
-        <div align="left"><a href="<?php echo base_url()?>">Return Book</a></div>
+        <div align="left"><a href="<?php echo base_url()?>directReturnPage">Return Book</a></div>
       </li>
       <li>
         <div align="left"><a href="<?php echo base_url()?>">Edit User Profile</a></div>
