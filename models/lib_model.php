@@ -15,30 +15,35 @@
 			}else
 				echo "Database Empty";
 		}							
-		function getUser($ic = null , $password = null)
+		function getUser($ic = null , $password = null , $search = false)
 		{
 			echo $ic;
 			echo $password;
 			$q = $this->db->get("usertable");
 			if($q->num_rows() > 0)
 			{
-				if(empty($password))//approval
+				if(empty($password))//approval & search
 				{					
 					foreach($q->result() as $row)
 					{
 						if($row->ic == $ic)
 						{
-							echo "user is valid";
-							if($row->penalty == 0 && $row->numLoan <= 5)
+							if(!search)
 							{
-								echo "<br>Loan Approved";
-								return true;
+								echo "user is valid";
+								if($row->penalty == 0 && $row->numLoan <= 5)
+								{								
+									echo "<br>Loan Approved";
+									return true;
+								}
+								else
+								{
+									echo "<br>Loan not Approved";
+									return false;
+								}
 							}
 							else
-							{
-								echo "<br>Loan not Approved";
-								return false;
-							}							
+								return $row;
 						}
 					}
 					echo "Register First";
@@ -219,7 +224,7 @@
 					{
 						foreach($q->result() as $row)
 						{
-							if($row->ic == $ic && $row->password == $password)
+							if($row->staffID == $ic && $row->password == $password)
 							{
 								return true;
 							}
@@ -229,7 +234,6 @@
 				}
 			}else
 				echo "Database Empty";
-		}			
-		
+		}		
 	}
 ?>

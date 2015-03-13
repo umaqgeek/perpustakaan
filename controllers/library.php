@@ -16,7 +16,7 @@ class Library extends CI_Controller
 	function loginStaffProcess()
 	{
 		$this->load->model("lib_model");
-		if($this->lib_model->getUser($this->input->post('name'),$this->input->post('pass')))
+		if($this->lib_model->getStaff($this->input->post('name'),$this->input->post('pass')))
 		{
 			$this->load->view("staffPage");
 		}		
@@ -31,7 +31,7 @@ class Library extends CI_Controller
 	function loginUserProcess()
 	{
 		$this->load->model("lib_model");
-		if($this->lib_model->getUser($this->input->post('name'),$this->input->post('pass')))
+		if($this->lib_model->getUser($this->input->post('name'),$this->input->post('pass'),false))
 		{
 			$this->load->view("userPage");
 		}		
@@ -49,13 +49,29 @@ class Library extends CI_Controller
 			echo "<br>Register Error";
 	}
 	
+	function searchUser()//staff access
+	{
+		$userID = $this->input->post('userID');
+		$search = $this->input->post("search");
+		$searchAll = $this->input->post('listAll');
+		$this->load->model('lib_model');
+		if($search)
+		{
+			$data['result'] = $this->lib_model->getUser($userID , null,true);
+		}
+		else
+		{
+			$data['result'] = $this->lib_model->getAllUser();
+		}
+		$this->load->view('userList' , $data);
+	}
 	//>>>>>>>>Borrow Function>>>>>>>>>>	
 	function approvalLoanProcess()
 	{
 		$userID = $this->input->post('userID');
 		$bookID = $this->input->post('bookCode');
 		$this->load->model("lib_model");
-		if($this->lib_model->getUser($userID,null))
+		if($this->lib_model->getUser($userID,null,false))
 		{
 			$row = $this->lib_model->searchBook($bookID);
 			if($row->available != 0)
@@ -127,6 +143,14 @@ class Library extends CI_Controller
 	function directReturnPage()
 	{
 		$this->load->view("returnPage");
+	}
+	function directSearchPage()
+	{
+		$this->load->view("searchPage");
+	}
+	function directListPage()
+	{
+		$this->load->view("userList");
 	}
 }
 

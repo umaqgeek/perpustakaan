@@ -32,7 +32,7 @@
         <div align="left"><a href="<?php echo base_url()?>directReturnPage">Return Book</a></div>
       </li>
       <li>
-        <div align="left"><a href="<?php echo base_url()?>">Edit User Profile</a></div>
+        <div align="left"><a href="<?php echo base_url()?>directSearchPage">Search User Profile</a></div>
       </li>
     </ul>
    </div>
