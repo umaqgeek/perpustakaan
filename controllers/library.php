@@ -5,23 +5,21 @@ class Library extends CI_Controller
 	function index()
 	{
 		$this->load->view("libHome");		
-	}
-	
+	}	
 	//>>>>>>>>Staff Function>>>>>>>>>>
 	function loginStaff()
 	{
 		echo "hai login staff";
 		$this->load->view("staffLogin");
 	}
-	function loginStaffProcess()// for staff login
+	function loginStaffProcess()
 	{
 		$this->load->model("lib_model");
 		if($this->lib_model->getStaff($this->input->post('name'),$this->input->post('pass')))
 		{
 			$this->load->view("staffPage");
 		}		
-	}
-	
+	}	
 	//>>>>>>>>User Function>>>>>>>>>>	
 	function loginUser()
 	{
@@ -47,9 +45,7 @@ class Library extends CI_Controller
 			echo "<br />Register Done";
 		else
 			echo "<br>Register Error";
-	}
-
-	
+	}	
 	function searchUser()//staff access
 	{
 		$userID = $this->input->post('userID');
@@ -65,33 +61,15 @@ class Library extends CI_Controller
 			$data['result'] = $this->lib_model->getAllUser();
 		}
 		$this->load->view('userList' , $data);
-	}
-	
-	
-	
-	
+	}	
+	function viewUserProfile()
+	{
+		$userID = $this->input->post("userID");
+		$this->load->model('lib_model');
+		$data['result'] = $this->lib_model->getUser($userID, null , false);
+		$this->load->view('userEditPage.php',$data);
 		
-	//>>>>>>>>>BooksRegister>>>>>>>>>>>>
-	function AddBook()
-	{
-		echo "hai staff";
-		$this->load->view("BooksRegister");
 	}
-	function BooksRegisterProcess()
-	{
-		$Type = $this->input->post('BooksType');
-		$Bname = $this->input->post('BooksName');
-		$author = $this->input->post('AuthorsName');
-		$BooksID = $this->input->post('No');
-		$Purchase = $this->input->post('rm');
-		$Q_book = $this->input->post('Q_book');
-		$this->load->model("lib_model");
-		if($this->lib_model->insertBooks($Type, $Bname, $author, $BooksID, $Purchase, $Q_book))
-			echo "<br />The book has been add";
-		else
-			echo "<br />Insert failed!";
-	}
-	
 	//>>>>>>>>Borrow Function>>>>>>>>>>	
 	function approvalLoanProcess()
 	{
@@ -148,9 +126,9 @@ class Library extends CI_Controller
 			);
 		$this->load->model("lib_model");
 		$this->lib_model->deleteLoan($data);
+		$row = $this->lib_model->searchBook($bookID);
+		$this->lib_model->setBookAvailable($row , 1);
 	}
-
-	
 	
 	//>>>>>>>>>>>>>>>>>>>>>Direct page>>>>>>>>>>>>>>>>>>>>>	
 	function directUserPage()
@@ -180,10 +158,6 @@ class Library extends CI_Controller
 	function directListPage()
 	{
 		$this->load->view("userList");
-	}
-	function directBooksRegister()
-	{
-		$this->load->view("BooksRegister");
 	}
 }
 
