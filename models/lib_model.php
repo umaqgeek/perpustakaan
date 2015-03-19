@@ -15,7 +15,7 @@
 			}else
 				echo "Database Empty";
 		}							
-		function getUser($ic = null , $password = null , $search = false)
+		function getUser($ic = null , $password = null , $search = null)
 		{
 			echo $ic;
 			echo $password;
@@ -28,7 +28,7 @@
 					{
 						if($row->ic == $ic)
 						{
-							if(!search)
+							if(!$search)
 							{
 								echo "user is valid";
 								if($row->penalty == 0 && $row->numLoan <= 5)
@@ -153,20 +153,6 @@
 		}
 		
 		//>>>>>>>>Book Function>>>>>>>>>>
-		function insertBooks($Type, $Bname, $author, $BooksID, $Purchase, $Q_book)
-		{			
-			$data = array(
-			   'BooksType' => $Type ,
-			   'BooksNAme' => $Bname ,
-			   'Author' => $author ,
-			   'bookID' => $BooksID ,
-			   'Purchase' => $Purchase,
-			   'Q_book' => $Q_book
-			);			
-			$this->db->insert('booktable', $data); 
-			return true;
-		}
-		
 		function getAllBook()
 		{
 			$q = $this->db->get("booktable");
@@ -200,8 +186,6 @@
 			$this->db->where('bookID', $data->bookID);
 			$this->db->update('booktable', $data);			
 		}
-		
-		
 		
 		//>>>>>>>>Staff Function>>>>>>>>>>
 		function getAllStaff()
