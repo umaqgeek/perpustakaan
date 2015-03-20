@@ -49,7 +49,7 @@
 
 
 
-<form action="<?php echo base_url()?>BooksRegisterProcess" method="post" onsubmit="return proceed()">
+<form action="<?php echo base_url()?>BooksRegisterProcess" method="post" onsubmit="return confirm('dah yakin eh?');">
 
 <table align="center">
 

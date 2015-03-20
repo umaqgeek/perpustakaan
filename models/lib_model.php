@@ -153,6 +153,30 @@
 		}
 		
 		//>>>>>>>>Book Function>>>>>>>>>>
+		
+		//>>>>>>>>>>isert/register book>>>>>
+		function insertBooks($Type, $Bname, $author, $BooksID, $Purchase, $Q_book)
+		{
+			if($Type == "" || $Bname == "" || $author == "" || $BooksID == "" || $Purchase == "" || $Q_book == "")
+			{
+				return false;//>>>>jika form x isi penuh,data x bleh disimpan
+			}
+			else
+			{
+				$data = array(
+			   		'BooksType' => $Type ,
+			   		'BooksNAme' => $Bname ,
+			   		'Author' => $author ,
+			   		'bookID' => $BooksID ,
+			   		'Purchase' => $Purchase,
+			   		'Q_book' => $Q_book
+					);			
+			$this->db->insert('booktable', $data); 
+			return true;
+			}
+		}
+		
+		//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		function getAllBook()
 		{
 			$q = $this->db->get("booktable");

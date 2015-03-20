@@ -34,6 +34,9 @@
       <li>
         <div align="left"><a href="<?php echo base_url()?>directSearchPage">Search User Profile</a></div>
       </li>
+      <li>
+        <div align="left"><a href="<?php echo base_url()?>AddBook">Add Book</a></div>
+      </li>
     </ul>
    </div>
 </div>
