@@ -15,7 +15,7 @@
 			}else
 				echo "Database Empty";
 		}							
-		function getUser($ic = null , $password = null , $search = null)
+		function getUser($ic = null , $password = null , $search = false)
 		{
 			echo $ic;
 			echo $password;
@@ -66,29 +66,29 @@
 			}else
 				echo "Database Empty";
 		}		
-		function setUser1($ic , $name, $password , $address , $numLoan)// staff access
+		function setUser($ic , $password , $name, $address , $numLoan ,$penalty)// staff access
 		{
+			
 			$data = array(
                'name' => $name,
 			   'password' => $password,
                'address' => $address,
-               'numLoan' => $numLoan
+               'numLoan' => $numLoan,
+			   'penalty' => $penalty
             );
 			$this->db->where('ic', $ic);
 			$this->db->update('usertable', $data); 
-		}		
-		function setUser2($ic , $password , $name , $address)// user access
+		}	
+		function setUser2($ic , $password , $name, $address)// user access
 		{
 			$data = array(
                'name' => $name,
 			   'password' => $password,
                'address' => $address
-               
             );
 			$this->db->where('ic', $ic);
 			$this->db->update('usertable', $data); 
-		}
-		
+		}			
 		function insertUser($ic,$password,$name,$address)//staff access
 		{			
 			$data = array(
@@ -101,6 +101,14 @@
 			return true;
 		}
 		
+		function deleteUser($data)
+		{	
+			$this->db->limit(1);
+			//print_r($data);
+			$this->db->where($data);
+			$this->db->delete('usertable');			
+			echo "<br />Delete usertable done";
+		}
 		//>>>>>>>>Borrow Function>>>>>>>>>>
 		function getAllLoan()
 		{
@@ -153,6 +161,20 @@
 		}
 		
 		//>>>>>>>>Book Function>>>>>>>>>>
+		function insertBooks($Type, $Bname, $author, $BooksID, $Purchase, $Q_book)
+		{			
+			$data = array(
+			   'BooksType' => $Type ,
+			   'BooksNAme' => $Bname ,
+			   'Author' => $author ,
+			   'bookID' => $BooksID ,
+			   'Purchase' => $Purchase,
+			   'Q_book' => $Q_book
+			);			
+			$this->db->insert('booktable', $data); 
+			return true;
+		}
+		
 		function getAllBook()
 		{
 			$q = $this->db->get("booktable");
@@ -186,6 +208,8 @@
 			$this->db->where('bookID', $data->bookID);
 			$this->db->update('booktable', $data);			
 		}
+		
+		
 		
 		//>>>>>>>>Staff Function>>>>>>>>>>
 		function getAllStaff()

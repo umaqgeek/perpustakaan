@@ -38,7 +38,7 @@
 </nav>
 </div><!--Nav-->
 
-<form action="<?php echo base_url()?>registerUser" method="POST" class="table" onsubmit="return proceed()" >
+<form action="<?php echo base_url()?>updateUserProfile/true" method="POST" class="table" onsubmit="return proceed()" >
 
 <table align="center">
 
@@ -46,7 +46,8 @@
 <td>Ic Number</td>
 <td>:</td>
 <td>
-<input type="text" name="userID" id="userID" disabled="disabled" value="<?php echo $result->ic ?>"/>
+<?php echo $result->ic ?>
+<input type="hidden" name="userID" id="userID" value="<?php echo $result->ic ?>"/>
 </td>
 </tr>
 
@@ -70,14 +71,14 @@
 <td>Address</td>
 <td>:</td>
 <td>
-<textarea name="address" id="address" value="<?php echo $result->address ?>"></textarea>
+<input name="address" id="address" value="<?php echo $result->address ?>"></textarea>
 </td></tr>
 
 <tr>
 <td>Num Of Loan </td>
 <td>:</td>
 <td>
-<input type="text" name="numLoan" id="numLoan" value="<?php echo $result->numLoan ?>"></textarea>
+<input type="text" name="numLoan" id="numLoan" value="<?php echo $result->numLoan ?>">
 </td></tr>
 
 <tr>
