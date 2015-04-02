@@ -170,8 +170,15 @@
 			   		'bookID' => $BooksID ,
 			   		'Purchase' => $Purchase,
 			   		'Q_book' => $Q_book
-					);			
-			$this->db->insert('booktable', $data); 
+					);
+			$this->db->insert('booktable', $data);
+			//>>>calculate book quantity>>>
+			$maklumat = array(
+					'bookID' => $BooksID ,
+					'BookType' => $Type ,
+					'Total' => $Q_book
+					);
+			$this->db->insert('calculate_book', $maklumat); 
 			return true;
 			}
 		}

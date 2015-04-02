@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2015 at 01:51 PM
+-- Generation Time: Apr 02, 2015 at 06:22 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -30,6 +30,8 @@ USE `library`;
 
 CREATE TABLE IF NOT EXISTS `booktable` (
   `bookID` varchar(30) NOT NULL,
+  `Date` varchar(33) NOT NULL,
+  `Time` varchar(33) NOT NULL,
   `Q_book` varchar(50) NOT NULL,
   `available` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0 => false',
   `BooksNAme` varchar(70) NOT NULL,
@@ -43,10 +45,8 @@ CREATE TABLE IF NOT EXISTS `booktable` (
 -- Dumping data for table `booktable`
 --
 
-INSERT INTO `booktable` (`bookID`, `Q_book`, `available`, `BooksNAme`, `Author`, `BooksType`, `Purchase`) VALUES
-('1234', '', 3, '', '', '', ''),
-('lml', 'klmm', 1, 'jknn', 'mklmlkm', 'klmklmkl', 'mlkm'),
-('njkn', '', 1, 'jnkjnj', 'nkjnkj', 'njknjknkj', 'jnnjk');
+INSERT INTO `booktable` (`bookID`, `Date`, `Time`, `Q_book`, `available`, `BooksNAme`, `Author`, `BooksType`, `Purchase`) VALUES
+('4321', '', '', '7', 1, 'sang buaya', 'bazli', 'buku cerita', '12');
 
 -- --------------------------------------------------------
 
@@ -65,9 +65,28 @@ CREATE TABLE IF NOT EXISTS `borrowtable` (
 --
 
 INSERT INTO `borrowtable` (`loanDate`, `ic`, `bookID`) VALUES
-('2015-03-09 05:46:56', 1234, '1234'),
-('2015-03-09 06:33:28', 1234, '1234'),
-('2015-03-17 06:06:20', 1234, '1234');
+('2015-04-01 08:11:41', 1234, '12'),
+('2015-04-01 08:12:36', 1234, '32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `calculate_book`
+--
+
+CREATE TABLE IF NOT EXISTS `calculate_book` (
+  `bookID` int(11) NOT NULL,
+  `BookType` varchar(77) NOT NULL,
+  `Total` varchar(55) NOT NULL,
+  `Available` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `calculate_book`
+--
+
+INSERT INTO `calculate_book` (`bookID`, `BookType`, `Total`, `Available`) VALUES
+(4321, 'buku cerita', '7', '');
 
 -- --------------------------------------------------------
 
@@ -110,6 +129,7 @@ CREATE TABLE IF NOT EXISTS `usertable` (
 
 INSERT INTO `usertable` (`ic`, `password`, `name`, `address`, `numLoan`, `penalty`) VALUES
 (0, 'eee', 'eee', 'eee', 0, 0),
+(123, '323', '333', '33', 0, 0),
 (1234, '1234', 'huhu', 'huhu', 0, 0),
 (33333, 'www', 'www', 'www', 0, 0),
 (123456, '321', 'sasasa', '32444', 0, 0);
