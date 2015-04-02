@@ -18,24 +18,17 @@ class Library extends CI_Controller
 		$this->load->model("lib_model");
 		if($this->lib_model->getStaff($this->input->post('name'),$this->input->post('pass')))
 		{
-			$this->load->view("staffPage");
+			if($this->input->post('name')!= "admin")
+			{
+				$this->load->view("staffPage");
+			}
+			else
+			{
+				$this->load->view("adminPage");
+			}
 		}		
-	}
-	
-	//>>>>>>>>User Function>>>>>>>>>>	
-	function loginUser()
-	{
-		echo "hai login user";
-		$this->load->view("userLogin");
-	}
-	function loginUserProcess()
-	{
-		$this->load->model("lib_model");
-		if($this->lib_model->getUser($this->input->post('name'),$this->input->post('pass'),false))
-		{
-			$this->load->view("userPage");
-		}		
-	}
+	}	
+	//>>>>>>>>User Function>>>>>>>>>>
 	function registerUser()
 	{
 		$userID = $this->input->post('userID');
@@ -119,8 +112,7 @@ class Library extends CI_Controller
 			echo "<br />The book has been add";
 		else
 			echo "<br />Insert failed!";
-	}
-	
+	}	
 	//>>>>>>>>Borrow Function>>>>>>>>>>	
 	function approvalLoanProcess()
 	{
@@ -178,8 +170,6 @@ class Library extends CI_Controller
 		$this->load->model("lib_model");
 		$this->lib_model->deleteLoan($data);
 	}
-
-	
 	
 	//>>>>>>>>>>>>>>>>>>>>>Direct page>>>>>>>>>>>>>>>>>>>>>	
 	function directUserPage()

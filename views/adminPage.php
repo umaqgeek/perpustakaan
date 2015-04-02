@@ -16,14 +16,25 @@
     <h1 align="center"><b>Library System</b></h1>
 </div>
 
-<div id="Nav">
 
-<nav>
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="<?php echo base_url()?>loginStaff">Staff Login</a> </li>
-</ul>
-</nav>
+   <div align="center"><!--<li><a href='?logout=true'>Logout</a></li>-->
+    <h1>Welcome Admin</h1>
+    <p><a href="<?php echo base_url()?>" >LogOut</a></p>
+    <p>&nbsp;</p>
+    <ul>
+      <li>
+        <div align="left"><a href="<?php echo base_url()?>">Register Staff</a></div>
+      </li>
+      <li>
+        <div align="left"><a href="<?php echo base_url()?>"></a></div>
+      </li>
+      <li>
+        <div align="left"><a href="<?php echo base_url()?>directSearchPage">Search User Profile</a></div>
+      </li>
+    </ul>
+   </div>
+</div>
+
 </div><!--Nav--></div>
 </body>
 </html>

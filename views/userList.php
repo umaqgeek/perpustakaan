@@ -57,7 +57,7 @@
       <td width="123"><div align="center"><strong>Remark</strong></div></td>
     </tr>
     <?php
-      $count=0;	  
+      $count=0; 
 	  foreach($result as $row):
 	  $count ++;
    ?>

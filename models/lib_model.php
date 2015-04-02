@@ -43,7 +43,7 @@
 								}
 							}
 							else
-								return $row;
+								return $data = array($row);
 						}
 					}
 					echo "Register First";
@@ -67,8 +67,7 @@
 				echo "Database Empty";
 		}		
 		function setUser($ic , $password , $name, $address , $numLoan ,$penalty)// staff access
-		{
-			
+		{			
 			$data = array(
                'name' => $name,
 			   'password' => $password,
@@ -125,7 +124,7 @@
 		}
 		function getLoan($ic = null , $bookID = null)
 		{
-			$this->db->order_by("loanDate", "asc");//desc
+			$this->db->order_by("loanDate", "asc");//desc ////////!!!!!!!!!!
 			$q = $this->db->get("borrowtable");
 			if($q->num_rows() > 0)
 			{
@@ -158,6 +157,7 @@
 			$this->db->where($data);
 			$this->db->delete('borrowtable');			
 			echo "<br />Delete borrowtable done";
+			$this->db->insert('returnRecord', $data); 
 		}
 		
 		//>>>>>>>>Book Function>>>>>>>>>>
@@ -207,10 +207,7 @@
 			$data->available = $data->available + $num;			
 			$this->db->where('bookID', $data->bookID);
 			$this->db->update('booktable', $data);			
-		}
-		
-		
-		
+		}		
 		//>>>>>>>>Staff Function>>>>>>>>>>
 		function getAllStaff()
 		{
