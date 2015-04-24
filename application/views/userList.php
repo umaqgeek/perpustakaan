@@ -6,8 +6,30 @@
 <link rel="stylesheet" type="text/css" href="../css/susun_menu.css" />
 <link rel="stylesheet" href="../css/Admin_ManageUser_css.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return Page</title>
+<title>User Search Page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="javascript" type="text/javascript">	
+	function actionProceed(x,y)
+	{
+		//document.getElementById("ic").value	= x;
+		document.writeln("Test this " + x + y);
+		document.writeln("Test this2 ");	
+		//document.writeln(document.getElementById("ic").value);
+		var temp = document.getElementById("formList");
+		if(y == 1){
+			
+			temp.action = "/changeFix.php";
+			document.writeln("Test update " + y);
+		}
+		else{
+			//document.getElementById("formList").action = '<?php echo base_url()?>delete';
+			document.writeln("Test delete " + y);
+		}
+		document.writeln("Test huhuhu submit ");
+		temp.submit();
+		
+	}
+</script>
 </head>
 
 <body bgcolor="#CCCCCC">
@@ -26,7 +48,8 @@
 </nav>
 </div><!--Nav--></div>
 
-   <form>
+   <form method="post" id="formList" name="formList" action="">
+   <input type="hidden" id="ic" name = 'ic' value="fghfd" />
   <table width="800" border="1" align="center">
   
     <tr> 
@@ -50,8 +73,10 @@
       <td><div align="center"><?php echo $row->address; ?></div></td>
       <td><div align="center"><?php echo $row->numLoan; ?></div></td>
       <td><div align="center"><?php echo $row->penalty; ?></div></td>
-      <td><div align="center"> [<a href="#">UPDATE 
-          </a>] [<a href="#">DELETE</a>]</div></td>
+      <td><div align="center">
+      <button onclick="actionProceed(<?php echo $row->ic?> , 1);" type="button">UPDATE</button>
+      <button onclick="actionProceed(<?php echo $row->ic?> , 2);" type="submit">DELETE</button></div>
+      </td>
     </tr>
     <?php
    	endforeach;

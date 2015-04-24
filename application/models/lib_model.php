@@ -28,7 +28,7 @@
 					{
 						if($row->ic == $ic)
 						{
-							if(!search)
+							if(!$search)
 							{
 								echo "user is valid";
 								if($row->penalty == 0 && $row->numLoan <= 5)
@@ -43,7 +43,10 @@
 								}
 							}
 							else
-								return $row;
+							{
+								$data[] = $row;
+								return $data;
+							}
 						}
 					}
 					echo "Register First";
@@ -151,22 +154,7 @@
 			$this->db->delete('borrowtable');			
 			echo "<br />Delete borrowtable done";
 		}
-		
-		//>>>>>>>>Book Function>>>>>>>>>>
-		function insertBooks($Type, $Bname, $author, $BooksID, $Purchase, $Q_book)
-		{			
-			$data = array(
-			   'BooksType' => $Type ,
-			   'BooksNAme' => $Bname ,
-			   'Author' => $author ,
-			   'bookID' => $BooksID ,
-			   'Purchase' => $Purchase,
-			   'Q_book' => $Q_book
-			);			
-			$this->db->insert('booktable', $data); 
-			return true;
-		}
-		
+
 		function getAllBook()
 		{
 			$q = $this->db->get("booktable");

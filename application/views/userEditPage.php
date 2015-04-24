@@ -7,15 +7,13 @@
 <link rel="stylesheet" href="../css/Admin_ManageUser_css.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Register Page</title>
-
 <script language="javascript">
 	function proceed()
 	{
-		var userID = document.getElementById("userID").value;
 		var pass = document.getElementById("pass").value;
 		var name = document.getElementById("name").value;
 		var address = document.getElementById("address").value;
-		if(userID == "" || pass == "" || name == "" || address == "")
+		if(pass == "" || name == "" || address == "")
 		{
 			return false;
 		}
@@ -23,21 +21,19 @@
 			return true;
 	}
 </script>
-
 </head>
-
 <body bgcolor="#CCCCCC">
 <div id="container">
   
   <div id="Header">
     <h1 align="center"><b>Library System</b></h1>
-    <p align="center"><b>Register Page</b></p>
+    <p align="center"><b>User Profile</b></p>
   </div>
 
 <div id="Nav">
 
 <nav>
-<ul><li><a href="<?php echo base_url()?>directStaffPage">Staff Page</a></li>
+<ul><li><a href="<?php echo base_url()?>">Staff Page</a></li>
 </ul>
 </nav>
 </div><!--Nav-->
@@ -50,7 +46,7 @@
 <td>Ic Number</td>
 <td>:</td>
 <td>
-<input type="text" name="userID" id="userID"/>
+<input type="text" name="userID" id="userID" disabled="disabled" value="<?php echo $result->ic ?>"/>
 </td>
 </tr>
 
@@ -58,7 +54,7 @@
 <td>Password</td>
 <td>:</td>
 <td>
-<input type="text" name="pass" id="pass" />
+<input type="text" name="pass" id="pass" value="<?php echo $result->password ?>" />
 </td>
 </tr>
 
@@ -66,7 +62,7 @@
 <td>Full Name</td>
 <td>:</td>
 <td>
-<input type="text" name="name" id="name"/>
+<input type="text" name="name" id="name" value="<?php echo $result->name ?>"/>
 </td>
 </tr>
 
@@ -74,7 +70,21 @@
 <td>Address</td>
 <td>:</td>
 <td>
-<textarea name="address" id="address"></textarea>
+<textarea name="address" id="address" value="<?php echo $result->address ?>"></textarea>
+</td></tr>
+
+<tr>
+<td>Num Of Loan </td>
+<td>:</td>
+<td>
+<input type="text" name="numLoan" id="numLoan" value="<?php echo $result->numLoan ?>"></textarea>
+</td></tr>
+
+<tr>
+<td>Penalty</td>
+<td>:</td>
+<td>
+<input type="text" name="penalty" id="penalty" value="<?php echo $result->penalty ?>"></textarea>
 </td></tr>
 
 <tr>

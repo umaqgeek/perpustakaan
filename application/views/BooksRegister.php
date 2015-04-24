@@ -15,8 +15,8 @@
 		var AuthorsName = document.getElementById("AuthorsName").value;
 		var No = document.getElementById("No").value;
 		var rm = document.getElementById("rm").value;
-		var Q_book = document.getElementById("Q_book").value;
-		if(BooksName == "" || BooksType == "" || AuthorsName == "" || No == "" || rm == "" || Q_book == "")
+		var Q_book = document.getElementById("Quan").value;
+		if(BooksName == "" || BooksType == "" || AuthorsName == "" || No == "" || rm == "" || Quan == "")
 		{
 			return false;
 		}
@@ -49,7 +49,7 @@
 
 
 
-<form action="<?php echo base_url()?>BooksRegisterProcess" method="post" onsubmit="return proceed()">
+<form action="http://localhost/perpustakaan/index.php/lib_book/getReg" method="post" onsubmit="return confirm('dah yakin eh?');">
 
 <table align="center">
 
@@ -95,7 +95,7 @@
 <td>Quantity</td>
 <td>:</td>
 <td>
-<input type="text" name="Q_book" id="Q_book" />
+<input type="text" name="Quan" id="Quan" />
 </td></tr>
 
 <tr>

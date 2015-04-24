@@ -35,7 +35,7 @@
         <div align="left"><a href="<?php echo base_url()?>directSearchPage">Search User Profile</a></div>
       </li>
       <li>
-      	<div align="left"><a href="<?php echo base_url()?>AddBook">Add Book</a></div>
+        <div align="left"><a href="http://localhost/perpustakaan/index.php/lib_book/AddBook">Add Book</a></div>
       </li>
     </ul>
    </div>
